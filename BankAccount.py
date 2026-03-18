@@ -66,8 +66,9 @@ class MinimumBalanceAccount(BankAccount):
            return Error("Minimum balance threshold exceeded", self.minimum_balance)
 
 
+
 # --- TEST SCENARIO ---
-account = MinimumBalanceAccount(1500, 1000)
+account = MinimumBalanceAccount(1500, 1000) 
 print(account.deposit_money(500))
 print(account.withdraw_money(1200))
 print(account.withdraw_money(200))
