@@ -19,6 +19,7 @@ class Rocket:
         return f"Rocket altitude: {self.altitude}, average speed: {self.calculate_average():.2f}"
 
 
+
 class RocketBoard:
     def __init__(self, amount_of_rockets=5):
         self.rockets = [Rocket() for _ in range(amount_of_rockets)]
@@ -37,7 +38,7 @@ class RocketBoard:
                     rocket.move_up(random.randint(10, 15))
                 elif 75 < speed <= 100:
                     rocket.move_up(random.randint(15, 20))
-                    
+
             print(rocket)
 
 
