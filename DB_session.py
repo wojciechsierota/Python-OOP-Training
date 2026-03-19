@@ -30,18 +30,18 @@ class DbSession:
         
         self.conn.close()
 
-# --- Testing the logic ---
-try:
-    with DbSession("mydb.sqlite") as session:
-        session.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT)")
-        session.execute("INSERT INTO users(name) VALUES(?)", ("Bob",))
-        print("Attempting to add Bob to the database...")
-        raise Exception("Sudden system failure!") 
-except Exception as e:
-    print(f"Caught an error: {e}")
-
-with DbSession("mydb.sqlite") as session:
-    users = session.fetch_all("SELECT * FROM users")
-    print(f"Users in database after failure: {users}")
-
-print("Done")
+# Testing the logic 
+if __name__ == "__main__":
+    db = "test.sqlite"
+    try:
+        with DbSession(db) as sess:
+            sess.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, name TEXT)")
+            sess.execute("INSERT INTO users(name) VALUES(?)", ("Bob",))
+            print("Force failing transaction...")
+            raise RuntimeError("DB Crash!")
+    except Exception as e:
+        print(f"Caught expected error: {e}")
+        
+    with DbSession(db) as sess:
+        data = sess.fetch_all("SELECT * FROM users")
+        print(f"Current users: {data}")
