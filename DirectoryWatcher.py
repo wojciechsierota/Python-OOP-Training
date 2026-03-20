@@ -33,3 +33,5 @@ def on_change(filename):
 if __name__ == "__main__":
     watcher = DirectoryWatcher("my_dir", 1, on_change)
     watcher.watch(cycles=20)
+
+    

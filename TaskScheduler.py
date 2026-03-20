@@ -24,15 +24,18 @@ class TaskScheduler:
 
     def get_task_count(self):
         return len(self._tasks)
+    
 
 # Demonstration and Testing
 if __name__ == "__main__":
     s = TaskScheduler()
     now = datetime.datetime.now()
-    s.add(now, lambda: print("Executing task 1..."))
+    s.add(now, lambda: print("Executing task 1 ...."))
     s.add(now, lambda: 1/0) 
     s.add(now + datetime.timedelta(minutes=30), lambda: print("Should not run now"))
 
     print(f"Tasks before: {s.get_task_count()}")
     s.run_pending()
     print(f"Tasks left: {s.get_task_count()}")
+
+    
