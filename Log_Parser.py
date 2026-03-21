@@ -29,3 +29,4 @@ lines = [
  
 parser = LogParser(r"(?P<level>[A-Z]+): (?P<msg>.+)", on_match)
 parser.parse_lines(lines)
+
